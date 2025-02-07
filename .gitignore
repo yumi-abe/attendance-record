@@ -1,1 +1,1 @@
-echo "spreadsheet.json" >> .gitignore
+spreadsheet.json
