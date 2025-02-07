@@ -12,7 +12,7 @@ class InputSpreadSheet:
             "出勤簿",
             folder_id="14pZt8UcJ-jrj0eMD-1DHx7vBCz0xrF8g"
         )
-        self.ws = self.sh.worksheet("Sheet2")
+        self.ws = self.sh.worksheet("2025.2")
 
         self.values = self.ws.col_values(10)[5:]
         
@@ -31,7 +31,6 @@ class InputSpreadSheet:
             if input:
                 self.ws.update_acell(cells[i], input)
 
-        print('完了')
     
     def InputTime(self, input_date: datetime, time: str, attendance: bool):
         cells = self.get_cells(input_date)
@@ -39,4 +38,13 @@ class InputSpreadSheet:
             self.ws.update_acell(cells[0], time)
         else:
             self.ws.update_acell(cells[1], time)
-        print('完了')
+    
+    def resetStampData(self, input_date: datetime):
+        cells = self.get_cells(input_date)
+        self.ws.update_acell(cells[0], "")
+        self.ws.update_acell(cells[1], "")
+
+    def resetTaskData(self, input_date: datetime):
+        cells = self.get_cells(input_date)
+        self.ws.update_acell(cells[2], "")
+        
